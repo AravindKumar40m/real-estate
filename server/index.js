@@ -14,7 +14,7 @@ const path = require("path");
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
-// const __dirname = path.resolve();
+const __dirname__ = path.resolve();
 
 app.use(
   cors({
@@ -37,10 +37,10 @@ app.use("/api/v1/project", projectRouter);
 app.use("/api/v1/master", masterRouter);
 app.use("/api/v1/user", usersRouter);
 
-app.use(express.static(path.join(__dirname, "client", "public")));
+app.use(express.static(path.join(__dirname__, "client", "public")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "public", "index.html"));
+  res.sendFile(path.join(__dirname__, "client", "public", "index.html"));
 });
 
 app.listen(PORT, (req, res) => {
