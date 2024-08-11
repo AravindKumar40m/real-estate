@@ -14,7 +14,7 @@ const path = require("path");
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 app.use(
   cors({
