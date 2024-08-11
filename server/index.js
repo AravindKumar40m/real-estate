@@ -10,8 +10,12 @@ const masterRouter = require("./Routes/masterRoute/masterRoute");
 const usersRouter = require("./Routes/userRoute/userRoute");
 const { cloudinaryConnect } = require("./config/cloudinary");
 const projectRouter = require("./Routes/adminRoutes/projectRoute");
+const path = require("path");
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
+
+const __dirname = path.resolve();
+
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -32,6 +36,12 @@ app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/project", projectRouter);
 app.use("/api/v1/master", masterRouter);
 app.use("/api/v1/user", usersRouter);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 app.listen(PORT, (req, res) => {
   console.log(`App is listening at ${PORT}`);
